@@ -3,64 +3,114 @@
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![XGBoost](https://img.shields.io/badge/XGBoost-ML-orange)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
-![Status](https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow)
-![Parte](https://img.shields.io/badge/Progresso-Parte%202%20de%2010-informational)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-## Objetivo
+## Sobre o Projeto
 
-Sistema de Machine Learning para prever a probabilidade de um paciente
-não comparecer à sua consulta médica agendada (no-show), com base em
-dados históricos de agendamentos do sistema público de saúde.
+Sistema de Machine Learning construído do zero para prever a probabilidade de um paciente não comparecer à sua consulta médica agendada (**no-show**), com base em dados históricos de agendamentos do sistema público de saúde.
 
-## Problema
+O projeto foi desenvolvido em **10 partes**, cada uma documentada e commitada separadamente. O repositório foi construído como material de mentoria — permitindo que qualquer pessoa acompanhe o processo completo de construção de um pipeline de ML, do dado bruto ao deploy.
 
-O não comparecimento de pacientes gera desperdício de recursos, ociosidade
-de profissionais e impede o atendimento de outros pacientes em lista de espera.
-Este modelo permite ações proativas para reduzir o índice de no-show.
+## O Problema
+
+Em unidades públicas de saúde, o não comparecimento de pacientes gera:
+
+- Desperdício de vagas e recursos
+- Ociosidade de profissionais de saúde
+- Prejuízo a outros pacientes em lista de espera
+
+Este modelo permite ações proativas — como envio de lembretes direcionados, overbooking controlado e priorização de lista de espera — com base na probabilidade prevista de no-show para cada agendamento.
+
+## O Pipeline — Visão Geral
+
+O projeto percorre cinco etapas, cada uma correspondendo a um conjunto de partes:
+
+```
+Dado bruto → Exploração → Pré-processamento → Modelo → App → Deploy
+ (Partes 2-3)  (Parte 4-5)     (Partes 6-8)    (Parte 9) (Parte 10)
+```
+
+| Parte | Título | Script gerado |
+|---|---|---|
+| 1 | Visão Geral, Ambiente Local e Repositório | `00_verificar_ambiente.py` |
+| 2 | Entendendo o Problema e os Dados | `01_exploracao_dados.py` |
+| 3 | Análise Exploratória de Dados (EDA) | `02_eda.py` |
+| 4 | Pré-processamento e Engenharia de Features | `03_preprocessamento.py` |
+| 5 | Seleção de Features e Divisão dos Dados | `04_selecao_features.py` |
+| 6 | Treinamento do Modelo com XGBoost | `05_treinamento.py` |
+| 7 | Avaliação do Modelo | `06_avaliacao.py` |
+| 8 | Interpretabilidade com SHAP | `07_interpretabilidade.py` |
+| 9 | Construção do App com Streamlit | `app.py` |
+| 10 | Deploy no Streamlit Cloud e Documentação Final | `pipeline_completo.py` |
 
 ## Stack Tecnológica
 
-- Python 3.10+
-- pandas, numpy, scikit-learn, XGBoost
-- matplotlib, seaborn (visualizações)
-- SHAP (interpretabilidade)
-- joblib (persistência do modelo)
-- Streamlit (app web)
-- GitHub Desktop (versionamento)
+| Camada | Ferramenta | Função |
+|---|---|---|
+| Linguagem | Python 3.10+ | Linguagem principal |
+| Ambiente | venv | Isolamento de dependências |
+| Editor | VS Code | Edição local dos scripts |
+| Versionamento | Git + GitHub Desktop | Controle de versão sem terminal |
+| Dados | pandas + numpy | Manipulação e transformação |
+| Visualização | matplotlib + seaborn | Gráficos da EDA |
+| ML | scikit-learn + XGBoost | Pré-processamento e treinamento |
+| Interpretabilidade | SHAP | Explicabilidade das previsões |
+| Persistência | joblib | Salvar e carregar o modelo |
+| App web | Streamlit | Interface interativa |
+| Deploy | Streamlit Cloud | Publicação gratuita via GitHub |
 
 ## Estrutura do Repositório
 
 ```
 noshow-predictor/
 ├── data/
-│   ├── raw/            ← dataset original (baixar manualmente, ver abaixo)
-│   └── processed/      ← CSVs gerados pelo pré-processamento
-├── notebooks/          ← scripts .py por parte
+│   ├── raw/                  ← dataset original (baixar manualmente, ver abaixo)
+│   └── processed/            ← CSVs gerados na Parte 5
+├── notebooks/
 │   ├── 00_verificar_ambiente.py
-│   └── 01_exploracao_dados.py
-├── model/              ← modelo treinado (gerado localmente na Parte 6)
-├── assets/             ← gráficos .png gerados pela EDA e SHAP
-├── app.py              ← aplicação Streamlit (Parte 9)
-├── requirements.txt    ← dependências do projeto
+│   ├── 01_exploracao_dados.py
+│   ├── 02_eda.py
+│   ├── 03_preprocessamento.py
+│   ├── 04_selecao_features.py
+│   ├── 05_treinamento.py
+│   ├── 06_avaliacao.py
+│   ├── 07_interpretabilidade.py
+│   └── pipeline_completo.py
+├── model/                    ← modelo treinado — gerado localmente na Parte 6
+├── assets/                   ← gráficos .png gerados pela EDA e SHAP
+├── app.py                    ← aplicação Streamlit
+├── requirements.txt          ← dependências do projeto
+├── .gitignore
 └── README.md
 ```
+
+> **Arquivos não versionados** (listados no `.gitignore`):
+> - `.venv/` — ambiente virtual, criado localmente por cada colaborador
+> - `data/raw/*.csv` — dataset original (~9 MB), baixar do Kaggle
+> - `model/*.pkl` — modelo treinado, gerado ao executar a Parte 6
 
 ## Como Configurar o Projeto Localmente
 
 ### 1. Pré-requisitos
 
-- Python 3.10 ou superior instalado
-- VS Code instalado com a extensão Python
+- Python 3.10 ou superior
+- VS Code com a extensão Python instalada
 - GitHub Desktop instalado
 
-### 2. Clonar o repositório
+### 2. Fazer fork e clonar
 
-No GitHub Desktop: **File → Clone repository → noshow-predictor**.
-Escolha uma pasta local e clique em Clone.
+1. Clique em **Fork** no canto superior direito desta página
+2. Abra o GitHub Desktop
+3. **File → Clone repository → aba GitHub.com → selecione seu fork**
+4. Escolha uma pasta local e clique em **Clone**
 
-### 3. Criar e ativar o ambiente virtual
+### 3. Abrir no VS Code
 
-No terminal do VS Code, dentro da pasta do projeto:
+No GitHub Desktop: **Repository → Open in Visual Studio Code**
+
+### 4. Criar e ativar o ambiente virtual
+
+No terminal integrado do VS Code, a partir da raiz do projeto:
 
 **Windows (PowerShell):**
 ```bash
@@ -77,25 +127,23 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-Em ambos os sistemas, o terminal exibirá `(.venv)` no início da linha quando o ambiente estiver ativo.
+O terminal exibirá `(.venv)` no início da linha quando o ambiente estiver ativo.
 
-### 4. Instalar as dependências
+### 5. Instalar as dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. Baixar o dataset
+### 6. Baixar o dataset
 
-O dataset original não está no repositório (arquivo grande).
+O dataset não está no repositório — ele é ignorado pelo `.gitignore` (regra `data/raw/*.csv`).
 
 Baixe em: https://www.kaggle.com/datasets/joniarroba/noshowappointments
 
 Salve o arquivo **KaggleV2-May-2016.csv** em: `data/raw/`
 
-> ⚠️ Adicione a linha `data/raw/*.csv` ao seu `.gitignore` para garantir que o dataset não seja commitado acidentalmente.
-
-### 6. Verificar o ambiente
+### 7. Verificar o ambiente
 
 ```bash
 python notebooks/00_verificar_ambiente.py
@@ -103,73 +151,105 @@ python notebooks/00_verificar_ambiente.py
 
 Todas as bibliotecas devem aparecer com versão, sem erros.
 
-### 7. Selecionar o interpretador no VS Code
+### 8. Selecionar o interpretador no VS Code
 
-`Ctrl+Shift+P` → **Python: Select Interpreter** → escolha `.venv`
+`Ctrl+Shift+P` → **Python: Select Interpreter** → selecione `.venv`
 
-### 8. Executar os scripts
+### 9. Executar os scripts
 
-Execute sempre a partir da raiz do projeto:
+Execute sempre a partir da raiz do projeto. Os scripts usam `pathlib.Path` para montar caminhos compatíveis com Windows e Linux:
 
 ```bash
 python notebooks/01_exploracao_dados.py
+python notebooks/02_eda.py
+# ... e assim por diante, em ordem
 ```
 
-> Os scripts usam `pathlib.Path` para montar caminhos — compatíveis com Windows e Linux.
+## Como Navegar pelo Histórico e Acompanhar a Construção do Projeto
+
+O repositório foi construído parte por parte, com commits padronizados. Isso permite que qualquer pessoa acompanhe a evolução completa do projeto — do ambiente inicial ao deploy — como se fosse um livro com capítulos.
+
+### Visualizando o histórico no GitHub
+
+1. Acesse o repositório no GitHub
+2. Clique na aba **Commits** (ou no número de commits exibido abaixo dos botões Code / Issues / Pull requests)
+3. Você verá a lista completa de commits em ordem cronológica inversa (mais recente primeiro)
+
+Para ler na ordem de construção, role até o commit mais antigo ou use o botão **Older** no final da lista.
+
+### Visualizando o histórico no GitHub Desktop
+
+1. Abra o GitHub Desktop com o repositório selecionado
+2. Clique na aba **History** no painel esquerdo
+3. Clique em qualquer commit para ver exatamente quais arquivos foram criados ou modificados naquele momento
+4. Clique em um arquivo dentro do commit para ver as linhas adicionadas (em verde) e removidas (em vermelho)
+
+### Entendendo a convenção de commits
+
+Cada commit segue o formato `tipo: descrição`, onde o tipo indica o que aconteceu:
+
+| Prefixo | Significado | Exemplo |
+|---|---|---|
+| `chore:` | Configuração inicial, dependências, infra | `chore: configuração inicial do ambiente` |
+| `feat:` | Novo script ou funcionalidade | `feat: adiciona EDA com 7 gráficos exploratórios` |
+| `fix:` | Correção de erro | `fix: corrige cálculo de dias_antecedencia negativos` |
+| `docs:` | Atualização de documentação | `docs: atualiza README após Parte 3` |
+| `refactor:` | Melhoria sem mudança de comportamento | `refactor: simplifica função de pré-processamento` |
+
+### Reconstruindo o projeto a partir do zero com o histórico
+
+Para estudar o projeto como se o estivesse construindo do zero, você pode fazer checkout de qualquer commit específico e ver o estado exato do repositório naquele ponto:
+
+**Pelo GitHub (navegador):**
+1. Vá até a aba **Commits**
+2. Clique no ícone `<>` (Browse the repository at this point in history) ao lado do commit desejado
+3. O GitHub mostrará o repositório exatamente como estava naquele momento
+
+**Pelo GitHub Desktop:**
+1. Na aba **History**, clique com o botão direito no commit desejado
+2. Selecione **Checkout commit**
+3. O repositório local voltará para aquele estado
+4. Para retornar ao estado atual: **Branch → main**
+
+### Mapa de commits por parte
+
+Ao navegar pelo histórico, você encontrará os commits na seguinte sequência:
+
+```
+chore: configuração inicial do ambiente e estrutura do projeto   ← Parte 1
+feat: adiciona script de exploração inicial do dataset           ← Parte 2
+feat: adiciona EDA com 7 gráficos exploratórios                  ← Parte 3
+feat: adiciona script de pré-processamento                       ← Parte 4
+feat: adiciona seleção de features e divisão dos dados           ← Parte 5
+feat: adiciona treinamento do modelo com XGBoost                 ← Parte 6
+feat: adiciona avaliação do modelo e relatório de métricas       ← Parte 7
+feat: adiciona interpretabilidade com SHAP                       ← Parte 8
+feat: adiciona aplicação Streamlit                               ← Parte 9
+feat: deploy no Streamlit Cloud e documentação final             ← Parte 10
+```
+
+Cada commit é um ponto de parada — você pode ler o script adicionado naquele commit, executá-lo, entender o que ele faz e só então avançar para o próximo.
 
 ## Dataset
 
 **Medical Appointment No Shows — Kaggle**
-110.527 registros | 14 variáveis | Target: No-show (Yes/No)
 
-Fonte: https://www.kaggle.com/datasets/joniarroba/noshowappointments
-
-| Variável | Tipo | Descrição |
-|---|---|---|
-| No-show | TARGET | `"Yes"` = não compareceu (1) \| `"No"` = compareceu (0) |
-| Age | Numérico | Idade do paciente em anos |
-| Gender | Categórico | F (feminino) ou M (masculino) |
-| ScheduledDay | Data/hora | Data em que o agendamento foi feito |
-| AppointmentDay | Data/hora | Data da consulta agendada |
-| Neighbourhood | Categórico | Bairro da unidade de saúde (81 valores) |
-| Scholarship | Binário | 1 = inscrito no Bolsa Família |
-| Hipertension | Binário | 1 = tem hipertensão |
-| Diabetes | Binário | 1 = tem diabetes |
-| SMS_received | Binário | 1 = recebeu SMS de lembrete |
+- 110.527 registros de agendamentos reais
+- Coletado em Vitória (ES), Brasil, entre 2015 e 2016
+- 14 variáveis — demográficas, clínicas e de agendamento
+- Target: coluna `No-show` (`"Yes"` = não compareceu = 1 | `"No"` = compareceu = 0)
 
 > ⚠️ A coluna `No-show` tem lógica invertida: `"Yes"` significa **não compareceu**.
 
-## Progresso do Projeto
-
-| Parte | Título | Status |
-|---|---|---|
-| Parte 1 | Visão Geral, Ambiente Local e Repositório | ✅ Concluída |
-| Parte 2 | Entendendo o Problema e os Dados | ✅ Concluída |
-| Parte 3 | Análise Exploratória de Dados (EDA) | 🔄 Em andamento |
-| Parte 4 | Pré-processamento e Engenharia de Features | ⏳ Pendente |
-| Parte 5 | Seleção de Features e Divisão dos Dados | ⏳ Pendente |
-| Parte 6 | Treinamento do Modelo com XGBoost | ⏳ Pendente |
-| Parte 7 | Avaliação do Modelo | ⏳ Pendente |
-| Parte 8 | Interpretabilidade com SHAP | ⏳ Pendente |
-| Parte 9 | Construção do App com Streamlit | ⏳ Pendente |
-| Parte 10 | Deploy no Streamlit Cloud e Documentação Final | ⏳ Pendente |
-
-## Resultados
-
-*(será atualizado após a Parte 7)*
+Fonte: https://www.kaggle.com/datasets/joniarroba/noshowappointments
 
 ## App
 
-*(URL pública será adicionada após a Parte 10)*
+*(URL pública será adicionada após o deploy na Parte 10)*
 
 ## Contribuindo
 
-Este projeto é desenvolvido em regime de mentoria. O mentorado trabalha em um fork próprio e contribui via Pull Requests e Issues.
-
-1. Faça um fork do repositório
-2. Clone o fork localmente com o GitHub Desktop
-3. Configure o ambiente seguindo os passos acima
-4. Abra uma Issue de confirmação no repositório original
+Este projeto é desenvolvido em regime de mentoria. O mentorado trabalha em um fork próprio e contribui via Pull Requests e Issues abertas no repositório original.
 
 ## Autor
 
