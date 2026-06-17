@@ -6,20 +6,20 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://maicc-noshow-predictor.streamlit.app/)
 
-## 🖥️ Interface do Aplicativo
+## Interface do Aplicativo
 
 ### Visão Geral da Previsão
 O aplicativo utiliza dados do paciente para calcular a probabilidade de não comparecimento, exibindo o diagnóstico de agendamento e a explicação das características com SHAP.
 
 <p align="center">
-  <img src="Captura de tela de 2026-06-17 18-23-52.png" alt="Painel de Previsão de No-Show" width="900">
+  <img src="image.png" alt="Painel de Previsão de No-Show" width="900">
 </p>
 
 ### Métricas e Desempenho
 O painel oferece uma visão detalhada do desempenho do modelo com métricas como Acurácia, Precisão, Recall e F1-score, além de uma análise de impacto clínico prática para gestão hospitalar.
 
 <p align="center">
-  <img src="Captura de tela de 2026-06-17 18-24-25.png" alt="Métricas do Modelo e Matriz de Confusão" width="900">
+  <img src="image-1.png" alt="Métricas do Modelo e Matriz de Confusão" width="900">
 </p>
 
 ## Sobre o Projeto
