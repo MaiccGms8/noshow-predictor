@@ -42,7 +42,7 @@ Este modelo permite ações proativas — como envio de lembretes direcionados, 
 
 ## App
 
-🔗 **Acesse o app publicado:** https://noshow-predictor.streamlit.app/
+🔗 **Acesse o app publicado:** (https://maicc-noshow-predictor.streamlit.app/)
 
 O app permite inserir os dados de um paciente e receber em tempo real:
 - A probabilidade de no-show com indicador de risco (baixo / médio / alto)
